@@ -34,10 +34,23 @@
         a {
             color: #0000ff;
             text-decoration: none;
+            cursor: pointer;
         }
 
         a:hover {
             text-decoration: underline;
+        }
+
+        nav {
+            margin-bottom: 20px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .active {
+            display: block;
         }
     </style>
 </head>
@@ -47,32 +60,163 @@
         <p>Your secure, fast, and reliable file transfer solution</p>
     </header>
 
-    <section id="about">
+    <nav>
+        <a href="#" id="home-tab">Home</a> | 
+        <a href="#" id="mobile-tab">Mobile</a> | 
+        <a href="#" id="backend-tab">Backend</a>
+    </nav>
+
+    <section id="home-content" class="tab-content active">
         <h2>About Tuynuk</h2>
         <p>
-            Tuynuk is an open-source file transfer application designed to make sharing files seamless and secure. Built using Flutter, Tuynuk ensures that your files are transferred swiftly while maintaining end-to-end encryption to safeguard your data. Whether you're sending a small document or a large media file, Tuynuk handles it all with ease.
+            Tuynuk is an open-source file transfer application designed to make sharing files seamless and secure. Built using Flutter and C#, Tuynuk ensures that your files are transferred swiftly while maintaining end-to-end encryption to safeguard your data. Whether you're sending a small document or a large media file, Tuynuk handles it all with ease. 
         </p>
+     <p>
+            Visit our <a href="https://github.com/xaldarof/tuynuk">GitHub mobile application repository</a> and <a href="https://github.com/niyozbekmirzayev/Tuynuk">GitHub backend repository</a> to explore the code, contribute to the project, or download the latest release.        </p>
     </section>
 
-    <section id="features">
-        <h2>Features</h2>
+    <section id="mobile-content" class="tab-content">
+        <h2>Tuynuk - Mobile</h2>
+        <h3>Overview</h3>
+        <p>
+            Tuynuk is a mobile application designed for secure, temporary file transfer. With this app, users can send and receive encrypted files within disposable sessions, ensuring that their data remains private and is not stored long-term. Built using Flutter and Dart, the app leverages advanced cryptographic techniques to provide robust security features, making it ideal for users who need a secure and ephemeral file transfer solution.
+        </p>
+        <img src="https://lokdon.com/wp-content/uploads/2021/09/Subtitle_01-2.jpg" alt="Tuynuk Mobile Overview">
+        
+        <h3>Features</h3>
         <ul>
-            <li><strong>End-to-End Encryption:</strong> All files are encrypted before transfer, ensuring that only the intended recipient can access them.</li>
-            <li><strong>Fast Transfer Speeds:</strong> Optimized for quick transfers, even for large files.</li>
-            <li><strong>Cross-Platform:</strong> Available on multiple platforms, allowing you to share files across different devices.</li>
-            <li><strong>Open Source:</strong> Tuynuk is open source, meaning you can view, modify, and contribute to the code.</li>
+            <li><strong>Disposable Sessions:</strong> Create temporary file transfer sessions that automatically expire after a certain period, ensuring no long-term data retention.</li>
+            <li><strong>End-to-End Encryption (E2EE):</strong> Secure files with AES encryption and elliptic curve cryptography, guaranteeing that only the intended recipient can access them.</li>
+            <li><strong>Asynchronous Operations:</strong> Use Dart isolates to handle encryption and decryption tasks in the background, providing a smooth user experience.</li>
+            <li><strong>Automatic Key Management:</strong> Generate and manage encryption keys for each session automatically, simplifying the user experience while maintaining security.</li>
+            <li><strong>User-Friendly Interface:</strong> Enjoy a simple and intuitive interface designed for quick and easy secure file transfer.</li>
+        </ul>
+
+        <h3>Screenshots</h3>
+        <img src="https://github.com/xaldarof/tuynuk/blob/main/assets/images/logo_dark.png" alt="Screenshot 1">
+
+        <h3>Installation</h3>
+        <ol>
+            <li>Clone the repository:
+                <pre><code>git clone https://github.com/xaldarof/tuynuk.git</code></pre>
+            </li>
+            <li>Get dependencies:
+                <pre><code>flutter pub get</code></pre>
+            </li>
+            <li>Configure project:
+                <pre><code>sh sync.sh</code></pre>
+            </li>
+            <li>Run the application:
+                <pre><code>flutter run</code></pre>
+            </li>
+        </ol>
+
+        <h3>Usage</h3>
+        <h4>Creating a Disposable Session</h4>
+        <ol>
+            <li>Open the app and tap the "New Session" button.</li>
+            <li>Select a contact to start a new file transfer session.</li>
+            <li>Transfer files securely within the session. All files will be encrypted and only accessible within this session.</li>
+        </ol>
+
+        <h4>Sending and Receiving Files</h4>
+        <ol>
+            <li>Within an active session, select the file you wish to send.</li>
+            <li>The file will be encrypted and sent to the recipient.</li>
+            <li>The recipient can then decrypt and access the file within the session.</li>
+        </ol>
+
+        <h4>Session Expiry</h4>
+        <p>Sessions are designed to expire after a predefined period. Once a session expires, all files within the session will be permanently deleted, ensuring no residual data remains.</p>
+
+        <h3>Technical Details</h3>
+        <ul>
+            <li><strong>AES Encryption and Decryption:</strong> The app uses AES encryption in CBC mode with PKCS7 padding for secure file encryption. Encryption and decryption can be handled asynchronously using Dart isolates for optimal performance.</li>
+            <li><strong>Elliptic Curve Cryptography:</strong> Tuynuk utilizes elliptic curve cryptography (ECC) for secure key exchanges and session key generation, ensuring that all cryptographic operations adhere to industry standards.</li>
+            <li><strong>Secure Random Number Generation:</strong> The app employs a cryptographically secure random number generator to create encryption keys and initialization vectors, providing high security for all cryptographic processes.</li>
+            <li><strong>Key Management:</strong> The app automatically handles key generation and management for each session, making it easy for users to focus on file transfer without worrying about cryptographic details.</li>
         </ul>
     </section>
 
-    <section id="get-started">
-        <h2>Get Started</h2>
+   <section id="backend-content" class="tab-content">
+        <h2>Backend Documentation</h2>
+        <h3>Overview</h3>
         <p>
-            Ready to start sharing files with Tuynuk? Visit our <a href="https://github.com/xaldarof/tuynuk">GitHub mobile application repository</a> and <a href="https://github.com/niyozbekmirzayev/Tuynuk">GitHub backend repository</a> to explore the code, contribute to the project, or download the latest release.
+            The Tuynuk backend is responsible for handling the server-side operations necessary for secure and efficient file transfer. It provides the APIs, manages encryption keys, and ensures secure communication between clients.
         </p>
-    </section>
+
+        <h3>Key Features</h3>
+        <ul>
+            <li><strong>RESTful API:</strong> Provides a RESTful API for file transfer operations, including file upload, download, and session management.</li>
+            <li><strong>End-to-End Encryption:</strong> Ensures all file transfers are encrypted from the sender to the receiver.</li>
+            <li><strong>Session Management:</strong> Manages disposable sessions that expire after a set period, ensuring no long-term data storage.</li>
+            <li><strong>Scalability:</strong> Designed to scale efficiently to handle a large number of concurrent file transfers.</li>
+        </ul>
+
+        <h3>Getting Started</h3>
+        <ol>
+            <li>Clone the backend repository:
+                <pre><code>git clone https://github.com/niyozbekmirzayev/Tuynuk.git</code></pre>
+            </li>
+            <li>Navigate to the project directory:
+                <pre><code>cd Tuynuk</code></pre>
+            </li>
+            <li>Install the required dependencies:
+                <pre><code>npm install</code></pre>
+            </li>
+            <li>Set up the environment variables:
+                <pre><code>cp .env.example .env</code></pre>
+                Update the `.env` file with the necessary configuration details.
+            </li>
+            <li>Start the backend server:
+                <pre><code>npm start</code></pre>
+            </li>
+        </ol>
+
+        <h3>API Endpoints</h3>
+        <h4>1. Create a New Session</h4>
+        <pre><code>POST /api/sessions</code></pre>
+        <p>Creates a new disposable session for file transfer.</p>
+
+        <h4>2. Upload a File</h4>
+        <pre><code>POST /api/sessions/:sessionId/files</code></pre>
+        <p>Uploads a file to a specific session.</p>
+
+        <h4>3. Download a File</h4>
+        <pre><code>GET /api/sessions/:sessionId/files/:fileId</code></pre>
+        <p>Downloads a file from a specific session.</p>
+
 
     <footer>
         <p>&copy; 2024 Tuynuk. Developed with ❤️ by the Tuynuk team.</p>
     </footer>
+
+    <script>
+        const homeTab = document.getElementById('home-tab');
+        const mobileTab = document.getElementById('mobile-tab');
+        const backendTab = document.getElementById('backend-tab');
+
+        const homeContent = document.getElementById('home-content');
+        const mobileContent = document.getElementById('mobile-content');
+        const backendContent = document.getElementById('backend-content');
+
+        homeTab.addEventListener('click', () => {
+            homeContent.classList.add('active');
+            mobileContent.classList.remove('active');
+            backendContent.classList.remove('active');
+        });
+
+        mobileTab.addEventListener('click', () => {
+            homeContent.classList.remove('active');
+            mobileContent.classList.add('active');
+            backendContent.classList.remove('active');
+        });
+
+        backendTab.addEventListener('click', () => {
+            homeContent.classList.remove('active');
+            mobileContent.classList.remove('active');
+            backendContent.classList.add('active');
+        });
+    </script>
 </body>
 </html>
